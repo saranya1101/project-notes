@@ -1,70 +1,30 @@
-import React, { useState } from 'react';
-import Swal from 'sweetalert2';
+import React from 'react'
+import { Link } from 'react-router'
 
-export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  function containsSpecialChar(str) {
-    return /[!@#$%^&*(),.?":{}|<>]/g.test(str);
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const validEmail = 'saranyasara1101@gmial.com';
-    const isPasswordValid = password.length === 8 && containsSpecialChar(password);
-
-    if (email === validEmail && isPasswordValid) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Login Successful',
-        text: 'Welcome back!',
-      });
-    } else {
-      Swal.fire({
-        icon: 'error',
-        title: 'Invalid Credentials',
-        text: 'Please check your email or password.',
-      });
-    }
-  };
-
+export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-white to-sky-100 flex items-center justify-center px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white/80 backdrop-blur-lg border border-stone-200 rounded-3xl shadow-2xl p-8 max-w-md w-full space-y-6"
-      >
-
-        <h2 className="text-3xl font-bold text-center text-fuchsia-700">Login</h2>
-
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-300"
-          required
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-300"
-          required
-        />
-
-        <button
-          type="submit"
-          className="w-full bg-fuchsia-600 text-white px-4 py-3 rounded-full shadow-lg text-lg font-semibold hover:bg-fuchsia-700 transition-all duration-300"
+    <div
+      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-rose-100 via-white to-sky-100 px-4"
+      style={{ fontFamily: "'Times New Roman', Times, serif" }}
+    >
+      <div className="bg-white/80 backdrop-blur-lg border border-stone-200 rounded-3xl shadow-2xl p-10 flex flex-col items-center max-w-md text-center hover:shadow-fuchsia-300 transition-shadow duration-300">
+        <h1 className="text-7xl font-extrabold text-fuchsia-700 mb-4 drop-shadow-sm tracking-tight">
+          404
+        </h1>
+        <p className="text-3xl font-semibold text-fuchsia-700 mb-2">
+          Page Not Found
+        </p>
+        <p className="text-fuchsia-500 mb-6 max-w-xs">
+          Sorry, the page you are looking for does not exist or has been moved.
+        </p>
+        <Link
+          to={'/home'}
+          className="mt-4 px-6 py-2 bg-fuchsia-600 text-white rounded-full shadow-lg hover:bg-fuchsia-700 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-300"
+          style={{ fontFamily: "'Times New Roman', Times, serif" }}
         >
-          Submit
-        </button>
-      </form>
+          Go Home
+        </Link>
+      </div>
     </div>
-  );
+  )
 }
-

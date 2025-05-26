@@ -1,22 +1,43 @@
-import {  Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
-import BasicLayout from "../layouts/BasicLayout";
-import SignUp from "../pages/SignUp";
+import BasicLayouts from "../layouts/BasicLayouts";
+import DashboardLayouts from "../layouts/DashboardLayouts";
+import Intro from "../pages/dashboard/Intro";
+import Counter from "../pages/dashboard/Counter";
+import Calculator from "../pages/dashboard/Calculator";
+import TodoList from "../pages/dashboard/TodoList";
+import Profile from "../pages/dashboard/Profile";
+import Settings from "../pages/dashboard/Settings";
+import PrivateRoute from "./PrivateRoute";
+import SignUp from "../pages/Signup";
 
 export default function AppRoutes() {
   return (
-    <Routes >
-        <Route path="/" element={<BasicLayout/>}>
-        <Route index element={<Home />}/>
+    <Routes>
+      <Route path="/" element={<BasicLayouts />}>
+        <Route index element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp/>} />
+      </Route>
+      <Route
+        path="/dashboard"
+        element={(
+          <PrivateRoute>
+            <DashboardLayouts />
+          </PrivateRoute>)}
+      >
+        <Route path="/dashboard/intro" element={<Intro />} />
+        <Route path="/dashboard/counter" element={<Counter />} />
+        <Route path="/dashboard/calc" element={<Calculator />} />
+        <Route path="/dashboard/todo-list" element={<TodoList />} />
+        <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard/settings" element={<Settings />} />
+      </Route>
 
-<Route path="/home" element={<Home />}/>
-<Route path="/login" element={<Login />}/>
-<Route path="/sign-up" element={<SignUp/>}/>
-</Route>
-<Route path="*" element={<NotFound/>}/>
-
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
