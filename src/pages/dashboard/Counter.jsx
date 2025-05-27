@@ -1,28 +1,40 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react";
+import "./Counter.css";
 
 export default function Counter() {
-  const [count, setCount] = useState(0)
+    const [level, setLevel] = useState(10);
+    const waterRef = useRef(null);
 
-  function handleClick() {
-    setCount(count + 1)
-  }
+    useEffect(() => {
+        if (waterRef.current) {
+            waterRef.current.style.height = `${level}%`;
+        }
+    }, [level]);
 
-  return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-gradient-to-br from-pink-100 via-white to-indigo-100"
-      style={{ fontFamily: "'Times New Roman', Times, serif" }}
-    >
-      <div className="bg-white/80 backdrop-blur-md border border-stone-300 rounded-3xl shadow-2xl p-10 w-full max-w-md text-center hover:shadow-fuchsia-300 transition duration-300">
-        <h2 className="text-3xl font-bold text-fuchsia-700 mb-6 drop-shadow-sm">
-          Counter
-        </h2>
-        <button
-          onClick={handleClick}
-          className="bg-fuchsia-600 text-white px-8 py-3 rounded-full shadow-lg text-lg font-semibold hover:bg-fuchsia-700 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-fuchsia-300"
-        >
-          Count: {count}
-        </button>
-      </div>
-    </div>
-  )
+    function handleIncr() {
+        if (level < 100) {
+            setLevel(100);
+        }
+    }
+
+    function handleDecr() {
+        if (level > 0) {
+            setLevel(level - 1);
+        }
+    }
+
+    return (
+        <div className="counter-wrapper">
+            <div id="counter">
+                <div className="jar-cap">ds</div>
+                <div className="jar">
+                    <div ref={waterRef} className="water">{level}%</div>
+                </div>
+                <div className="buttons">
+                    <button className="rounded bg-red-500 m-2 px-4 text-white" onClick={handleIncr}>Fill</button>
+                    <button className="rounded bg-blue-500 m-2 px-4 text-white" onClick={handleDecr}>Empty</button>
+                </div>
+            </div>
+        </div>
+    );
 }
