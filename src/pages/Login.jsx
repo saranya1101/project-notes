@@ -14,8 +14,11 @@ export default function Login() {
 
   return (
     <div
-      className="flex items-center justify-center min-h-[80vh] bg-gradient-to-br from-rose-100 via-white to-sky-100 px-4"
-      style={{ fontFamily: "'Times New Roman', Times, serif" }}
+      className="flex items-center justify-center min-h-[80vh] bg-cover bg-center px-4"
+      style={{
+        fontFamily: "'Times New Roman', Times, serif",
+        backgroundImage: "url('https://i.pinimg.com/736x/77/e2/fb/77e2fb92bb5ac0857bfefd98a0b15f4a.jpg')"
+      }}
     >
       <form
         onSubmit={handleSubmit}

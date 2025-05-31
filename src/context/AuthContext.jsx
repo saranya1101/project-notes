@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 
 const AuthContext = createContext();
 function AuthProvider({ children }) {
+	const [userEmail, setUserEmail] = useState(null);
 	const [isAuth, setIsAuth] = useState(false);
 	const navigate = useNavigate();
 
@@ -13,26 +14,32 @@ function AuthProvider({ children }) {
 		try {
 			userService.authenticate(email, password);
 			setIsAuth(true);
+			setUserEmail(email);
+			// Add login action to history
+			// import('../service/historyService').then(({ default: historyService }) => {
+			// 	historyService.addHistory(email, 'login');
+			// });
 			navigate('/dashboard/intro');
 			Swal.fire({
-				title: "Success",
-				text: "Login is successful",
-				icon: "success"
+				title: 'Success',
+				text: 'Login is successful',
+				icon: 'success',
 			});
 		} catch (error) {
 			Swal.fire({
-				title: "Invalid",
+				title: 'Invalid',
 				text: error.message,
-				icon: "error"
+				icon: 'error',
 			});
 		}
 	}
 	function logout() {
 		setIsAuth(false);
+		setUserEmail(null);
 		Swal.fire({
-			title: "Success",
-			text: "Logout successful",
-			icon: "success"
+			title: 'Success',
+			text: 'Logout successful',
+			icon: 'success',
 		});
 	}
 	function register(email, password) {
@@ -41,20 +48,20 @@ function AuthProvider({ children }) {
 			setIsAuth(true);
 			navigate('/dashboard/intro');
 			Swal.fire({
-				title: "Success",
-				text: "Registration is successful",
-				icon: "success"
+				title: 'Success',
+				text: 'Registration is successful',
+				icon: 'success',
 			});
 		} catch (error) {
 			Swal.fire({
-				title: "Invalid",
+				title: 'Invalid',
 				text: error.message,
-				icon: "error"
+				icon: 'error',
 			});
 		}
 	}
 	return (
-		<AuthContext.Provider value={{ login, logout, register, isAuth }}>
+		<AuthContext.Provider value={{ login, logout, register, isAuth, userEmail }}>
 			{children}
 		</AuthContext.Provider>
 	);

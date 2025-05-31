@@ -1,11 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
 
 export default function NotFound() {
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-rose-100 via-white to-sky-100 px-4"
-      style={{ fontFamily: "'Times New Roman', Times, serif" }}
+      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center px-4"
+      style={{
+        fontFamily: "'Times New Roman', Times, serif",
+        backgroundImage: "url('https://i.pinimg.com/736x/77/e2/fb/77e2fb92bb5ac0857bfefd98a0b15f4a.jpg')"
+      }}
     >
       <div className="bg-white/80 backdrop-blur-lg border border-stone-200 rounded-3xl shadow-2xl p-10 flex flex-col items-center max-w-md text-center hover:shadow-fuchsia-300 transition-shadow duration-300">
         <h1 className="text-7xl font-extrabold text-fuchsia-700 mb-4 drop-shadow-sm tracking-tight">
@@ -26,5 +29,5 @@ export default function NotFound() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

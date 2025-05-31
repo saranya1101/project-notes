@@ -47,10 +47,16 @@ export default function DashboardLayouts() {
         </button>
       </aside>
 
-      <main className="flex-1 min-h-screen overflow-auto p-10">
+      <main
+        className="flex-1 min-h-screen overflow-auto p-10"
+        style={{
+          backgroundImage: 'url("https://i.pinimg.com/736x/22/e4/75/22e475e272a3ea0d7a68dcc2e14a3eb6.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
         <Outlet />
       </main>
     </div>
   );
 }
-

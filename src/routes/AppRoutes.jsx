@@ -12,6 +12,8 @@ import Profile from "../pages/dashboard/Profile";
 import Settings from "../pages/dashboard/Settings";
 import PrivateRoute from "./PrivateRoute";
 import SignUp from "../pages/Signup";
+import Cms from "../pages/dashboard/Cms";
+
 
 export default function AppRoutes() {
   return (
@@ -20,6 +22,7 @@ export default function AppRoutes() {
         <Route index element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
+
         <Route path="/sign-up" element={<SignUp/>} />
       </Route>
       <Route
@@ -35,6 +38,8 @@ export default function AppRoutes() {
         <Route path="/dashboard/todo-list" element={<TodoList />} />
         <Route path="/dashboard/profile" element={<Profile />} />
         <Route path="/dashboard/settings" element={<Settings />} />
+              <Route path="/dashboard/cms" element={<Cms />} />
+
       </Route>
 
       <Route path="*" element={<NotFound />} />
